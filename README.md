@@ -1,1 +1,1 @@
-#box of six color
+box of six color
