@@ -1,0 +1,8 @@
+- Tạo rubix3d
+- Tạo rubix2d
+- Q-learning
+
+- Tạo rubik3d sử dụng Ursina
+- Tạo rubik2d 
+- Tạo Core __init__ 18/9/2022
+- Tạo core register_patterns, QLearn, reward 19/9/2022

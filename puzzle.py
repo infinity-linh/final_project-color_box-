@@ -34,12 +34,12 @@ class State:
         self.__top__ = [top[i:i + size] for i in range(0,len(front), size)]
         bottom, nums = nums[0:size**2],nums[size**2:]
         self.__bottom__ = [bottom[i:i + size] for i in range(0,len(front), size)]'''
-        self.__front__ = [['W','W','W'],['W','W','W'],['W','W','W']]
-        self.__back__ = [['Y','Y','Y'],['Y','Y','Y'],['Y','Y','Y']]
-        self.__top__ = [['R','R','R'],['R','R','R'],['R','R','R']]
-        self.__bottom__ = [['O','O','O'],['O','O','O'],['O','O','O']]
-        self.__left__ = [['B','B','B'],['B','B','B'],['B','B','B']]
-        self.__right__ = [['G','G','G'],['G','G','G'],['G','G','G']]
+        self.__left__ = [['W','W','W'],['W','W','W'],['W','W','W']]
+        self.__right__ = [['Y','Y','Y'],['Y','Y','Y'],['Y','Y','Y']]
+        self.__front__ = [['R','R','R'],['R','R','R'],['R','R','R']]
+        self.__back__ = [['O','O','O'],['O','O','O'],['O','O','O']]
+        self.__top__ = [['B','B','B'],['B','B','B'],['B','B','B']]
+        self.__bottom__ = [['G','G','G'],['G','G','G'],['G','G','G']]
         self.__sides__ = [self.front(), self.back(), self.left(), self.right(), self.top(), self.bottom()]
         self.d = {"front": self.front(), "back": self.back(), "left": self.left(),\
                     "right": self.right(), "top": self.top(), "bottom": self.bottom()}

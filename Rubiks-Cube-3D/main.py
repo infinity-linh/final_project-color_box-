@@ -26,7 +26,7 @@ class Game(Ursina):
         self.message = Text(origin=(0, 19), color=color.black)
         self.toggle_game_mode()
         self.create_sensors()
-        self.random_state(rotations=2) # initial state of the cube, rotations - number of side turns
+        # self.random_state(rotations=2) # initial state of the cube, rotations - number of side turns
 
     def random_state(self, rotations=3):
         [self.rotate_side_without_animation(random.choice(list(self.rotation_axes))) for i in range(rotations)]
@@ -39,7 +39,7 @@ class Game(Ursina):
         for cube in self.CUBES:
             if cube.position in cube_positions:
                 cube.parent = self.PARENT
-                exec(f'self.PARENT.rotation_{rotation_axis} = 90')
+                exec(f'self.PARENT.rotation_{rotation_axis} = 180')
 
     def create_sensors(self):
         '''detectors for each side, for detecting collisions with mouse clicks'''
@@ -71,7 +71,7 @@ class Game(Ursina):
         for cube in self.CUBES:
             if cube.position in cube_positions:
                 cube.parent = self.PARENT
-                eval(f'self.PARENT.animate_rotation_{rotation_axis}(90, duration=self.animation_time)')
+                eval(f'self.PARENT.animate_rotation_{rotation_axis}(180, duration=self.animation_time)')
         invoke(self.toggle_animation_trigger, delay=self.animation_time + 0.11)
 
     def reparent_to_scene(self):
@@ -103,24 +103,21 @@ class Game(Ursina):
         self.SIDE_POSITIONS = self.LEFT | self.BOTTOM | self.FACE | self.BACK | self.RIGHT | self.TOP
 
     def input(self, key):
-        # if key in 'mouse1 mouse3' and self.action_mode and self.action_trigger:
-        for hitinfo in mouse.collisions:
-            collider_name = hitinfo.entity.name
-            # in = input("Input action: ")
-            if (key == 'mouse1' and collider_name in 'LEFT RIGHT FACE BACK' or
-                    key == 'mouse3' and collider_name in 'TOP BOTTOM'):
-                print(collider_name)                    
-                self.rotate_side(collider_name)
-                break
-        # if key == 'mouse2':
-        #     self.toggle_game_mode()
-    #     super().input(key)
-    # def action(self, action):
-    #     self.rotate_side(action)
-    #     if action == 'stop':
-    #         self.toggle_game_mode()
-    #     super().input()
+        if key in 'mouse1 mouse3' and self.action_mode and self.action_trigger:
+            for hitinfo in mouse.collisions:
+                collider_name = hitinfo.entity.name
+                # in = input("Input action: ")
+                if (key == 'mouse1' and collider_name in 'LEFT RIGHT FACE BACK' or
+                        key == 'mouse3' and collider_name in 'TOP BOTTOM'):
+                    print(collider_name)                    
+                    self.rotate_side(collider_name)
+                    break
+        if key == 'mouse2':
+            self.toggle_game_mode()
+        super().input(key)
 
+# def update():
+#     game.rotate_side("RIGHT")
 
 if __name__ == '__main__':
     game = Game()
