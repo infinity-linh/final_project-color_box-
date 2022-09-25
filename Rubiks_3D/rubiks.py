@@ -1,7 +1,7 @@
 from ursina import *
 from core import Core, study
 from rubik_2d import *
-
+import time
 def position_box():
     side_position = {}
     LEFT = {Vec3(-1, y, z) for y in range(-1, 2) for z in range(-1, 2)}
@@ -55,16 +55,39 @@ def action(key):
     elif key == "back":
         rotate_side("BACK")
 
-# def learn_slove_cube():
-#     cubes, _ = n_move_state(n = 6)
-#     agent = Core(start=cubes)
-#     study(agent)
+# def input(key):
+#     if key == "space":
+#         state_random, act = n_move_state(n=8)
+#         for ac in range(len(act)):
+#             action(act[ac])
+#         print("Đã xáo xong!")
+#     elif key == "x":
+#         agent.Play(state_random, save_action)
+#         for a in save_action:
+#             action(a)
 
-# def update ():
-#     print("game update")
+# def animation_cube(act):
+#     action(act)
+    # print("Hello world!")
 
-# def showMenu():
-#   play = Button('Play', on_click=show_screen)
+# def print_():
+#     print("Next")
+
+# def update():
+    # if held_keys["space"]:
+    #     state_random, act = n_move_state(n=8)
+    #     for ac in act:
+
+# def input(key):
+        # invoke(Func(animation_cube, ac), delay=0.7)
+        # key = "space"
+        # if k == len(act) - 1:
+        #     print("Đã xáo xong")
+    # elif key == "x":
+    #     key = "x"
+    #     print(key)
+    # invoke(print_, delay=1)
+
 
 app = Ursina()
 
@@ -80,27 +103,19 @@ cube_root = Entity()
 rotation_axes = {'LEFT': 'x', 'RIGHT': 'x', 'TOP': 'y', 'BOTTOM': 'y', 'FACE': 'z', 'BACK': 'z'}
 # cubes_side_positons = side_position
 animation_time = 0.5
-# rotate_side("TOP", side_position, rotation_axes, cube)
 # cub, actions = n_move_state(n=10)
 cub, _ = n_move_state(n=6)
 agent = Core(start=cub)
 study(agent)
-# # showMenu()
 save_action = []
-# put = input("nhập số bất kì: ")
-# print(act)
-state_random, act = n_move_state(n=8)
-for ac in range(len(act)):
-    action(act[ac])
-    app.run()
-    # app.disable()
 
-print("Đã xáo xong!")
-agent.Play(state_random, save_action)
-# # agent.print_()
-print(save_action)
-
-for a in save_action:
-    action(a)
+cub, actions = n_move_state(n=10)
+for act in actions:
+    action(act)
     app.run()
+agent.Play(cub,save_action)
+for act in save_action:
+    action(act)
+    app.run()
+# app.disable()
 
